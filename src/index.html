@@ -145,7 +145,7 @@
             <button type="button" id="remove-languages-container" onclick="removeField('languages-container', 'cv-languages')" class="mt-2 bg-red-500 text-white p-2 rounded" style="display: none;">Supprimer</button>
 
         <!--bon ici la fonction generatePDF() est appélée grace à l'évènement onclick et le button génere un fichier au format pdf -->
-        <button type="button" onclick="generatePDF()" class="mt-4 bg-green-500 text-white p-2 rounded w-full">Télécharger en PDF</button>
+        <button type="button" onclick=" generatePDF()" class="mt-4 bg-green-500 text-white p-2 rounded w-full">Télécharger en PDF</button>
       </form>
     </div>
     
@@ -219,7 +219,7 @@
         </div>
         </div>
       </div> -->
-      <div class="w-full max-w-4xl bg-white shadow-lg flex rounded-lg overflow-hidden">
+      <div class="w-full max-w-4xl bg-white shadow-lg flex rounded-lg overflow-hidden" id="cv-preview">
         
         <!-- Colonne gauche -->
         <div class="w-1/3 bg-orange-500 text-white p-6">
@@ -309,6 +309,6 @@
       </div>
   </div>
 
-<script src="script2.js"></script>
+<script src="../script2.js"></script>
 </body>
 </html>

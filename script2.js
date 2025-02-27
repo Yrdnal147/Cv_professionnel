@@ -2,109 +2,435 @@
 // formulaire et les affiche dans la prévisualisation
 
 function updatePreview() {
-  document.getElementById("cv-name").innerText = document.getElementById("name").value || "Votre Nom";
-  document.getElementById("cv-email").innerText = document.getElementById("email").value || "Votre Email";
-  document.getElementById("cv-phone").innerText = document.getElementById("phone").value || "Votre Téléphone";
-  document.getElementById("cv-description").innerText = document.getElementById("description").value || "Votre description...";
+    const nom=document.getElementById("cv-name").innerText = document.getElementById("name").value || "Votre Nom";
+    const titre= document.getElementById("cv-title").innerText = document.getElementById("title").value || "Titre du poste";
+    const description= document.getElementById("cv-description").innerText = document.getElementById("description").value || "Votre description...";
+    const email= document.getElementById("cv-email").innerText = document.getElementById("email").value || "Votre Email";
+    const phone = document.getElementById("cv-phone").innerText = document.getElementById("phone").value || "Votre Téléphone";
+    const age= document.getElementById("cv-age").innerText = document.getElementById("age").value ? `${document.getElementById("age").value} ans` : "Âge non renseigné";
+    const genre= document.getElementById("cv-gender").innerText = document.getElementById("gender").value || "Genre";
+    const situation= document.getElementById("cv-situation").innerText = document.getElementById("situation").value || "Situation actuelle";
+    const address= document.getElementById("cv-address").innerText = document.getElementById("adresse").value || "Situation actuelle";
+    // Ici Mise à jour des listes dynamiques
+    updateListPreview("experience-container", "cv-experience");
+    updateListPreview("education-container", "cv-education");
+    updateListPreview("skills-container", "cv-skills");
+    updateListPreview("languages-container", "cv-languages");
+    updateListPreview("interests-container", "cv-interests");
+    updateListPreview("references-container", "cv-references");
+
+    if (!nom || !age || !titre || !description || !address || !email || !phone || !genre ) {
+        alert("Veuillez remplir tous les champs obligatoires (Nom, Âge, Titre, email, Téléphone).");
+        return null;
+    }
+
+    if (age < 18 || age > 65) {
+        alert(" L'âge doit être compris entre 18 et 65 ans.");
+        return null;
+    }
+
+    
+    }
+    // if (!validateEmail(email)) {
+    //     alert("Veuillez entrer une adresse e-mail valide.");
+    //     return null;
+    // }
+
+    // if (!validatePhone(telephone)) {
+    //     alert("Veuillez entrer un numéro de téléphone valide  de (9 chiffres).");
+    //     return null;
+    // }
+
+    // return {
+    //     nom, age, titre, description, email, telephone, adresse, entreprise, poste, duree, missions,
+    //     diplome, etablissement, annee, competence, niveau, loisir, langue, niveauLangue,
+    //     photo: photoFile ? URL.createObjectURL(photoFile) : null
+    // };
+
+//function validateEmail(email) {
+    //  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+//}
+
+
+function validatePhone(phone) {
+    return /^\d{9}$/.test(phone);
 }
+
+
+
+// function updateListPreview(containerId, previewId) {
+//     const container = document.getElementById(containerId);
+//     const preview = document.getElementById(previewId);
+    
+//     preview.innerHTML = ""; // Nettoyer avant d'ajouter
+
+//     const items = container.querySelectorAll("input, textarea, select");
+//     let content = "";
+//     items.forEach((item) => {
+//         if (item.value.trim()) {
+//             content += `<p>${item.value}</p>`;
+//         }
+//     });
+
+//     preview.innerHTML = content || "<p>Aucune donnée renseignée</p>";
+// }
+
+
+
 //cette fonction permet d'ajouter un champ à partir de son identifiant(id)
 //  et de mettre à jour la prévisualisation du cv tout en ajoutant le champ ajouté
 //dans la prévisualisation
-function addField(sectionId, placeholders, previewId) {
-  const container = document.getElementById(sectionId);
-  const div = document.createElement("div");
-  div.className = "mt-2 p-2 border rounded bg-gray-100";
+function addField(sectionId, labels, previewId) {
+    const container = document.getElementById(sectionId);
+    const div = document.createElement("div");
+    div.className = "mt-2 space-y-2";
 
-  placeholders.forEach(placeholder => {
-    const input = document.createElement("input");
-    input.type = "text";
-    input.placeholder = placeholder;
-    input.className = "w-full p-2 border rounded mt-2";
-    input.oninput = function() { updateDynamicPreview(sectionId, previewId); };
-    div.appendChild(input);
-  });
+    labels.forEach(label => {
+        const labelElement = document.createElement("label");
+        labelElement.textContent = label;
+        labelElement.className = "block text-gray-700 font-semibold";
 
-  container.appendChild(div);
-  updateDynamicPreview(sectionId, previewId);
-  toggleRemoveButton(sectionId);
-}
+        const input = document.createElement("input");
+        input.className = "w-full p-2 border rounded";
+        input.type = label.toLowerCase().includes("date") ? "date" : "text";
 
-//cette fonction permet de supprimer un champ à partir de son identifiant(id)
-//  et de mettre à jour la prévisualisation du cv tout en retirant le champ supprimé
-//et en enlevant le bouton de suppression si la section ne contient plus qu'un champ
-// cette fonction oblige l'utilisateur à avoir au moins un champ dans une section
-function removeField(sectionId, previewId) {
-  const container = document.getElementById(sectionId);
-  if (container.children.length > 1) {
-    container.removeChild(container.lastChild);
+        input.oninput = function () {
+            updateDynamicPreview(sectionId, previewId);
+        };
+
+        div.appendChild(labelElement);
+        div.appendChild(input);
+    });
+
+    container.appendChild(div);
     updateDynamicPreview(sectionId, previewId);
     toggleRemoveButton(sectionId);
-  }
 }
 
-//cette fonction permet de retirer le bouton quand
-//  dans une section il n'a au moins un champ 
-//ca oblige l'utilisateur à avoir au moins une experience utilisateur
-function toggleRemoveButton(sectionId) {
-  const container = document.getElementById(sectionId);
-  const removeButton = document.getElementById("remove-" + sectionId);
-  removeButton.style.display = container.children.length =1 ? "inline-block" : "none";
+function removeField(sectionId, previewId) {
+    const container = document.getElementById(sectionId);
+    const inputs = container.querySelectorAll("input");
+
+    if (inputs.length > 1) {
+        const lastInputDiv = inputs[inputs.length - 1].parentElement;
+        container.removeChild(lastInputDiv);
+        updateDynamicPreview(sectionId, previewId);
+        toggleRemoveButton(sectionId);
+    }
 }
+
+function updateListPreview(containerId, previewId) {
+    const container = document.getElementById(containerId);
+    const preview = document.getElementById(previewId);
+    preview.innerHTML = "";
+
+    const items = container.querySelectorAll("input, textarea, select");
+    let content = "";
+    items.forEach((item) => {
+        if (item.value.trim()) {
+            content += `<p>${item.value}</p>`;
+        }
+    });
+
+    preview.innerHTML = content || "<p>Aucune donnée renseignée</p>";
+}
+
+function validateDates() {
+    const experienceDates = document.querySelectorAll('#experience-container input[type="date"]');
+    for (const dateInput of experienceDates) {
+        if (dateInput.value && !isValidDate(dateInput.value)) {
+            alert("Veuillez entrer une date valide pour l'expérience professionnelle.");
+            return false;
+        }
+    }
+
+    const educationDates = document.querySelectorAll('#education-container input[type="date"]');
+    for (const dateInput of educationDates) {
+        if (dateInput.value && !isValidDate(dateInput.value)) {
+            alert("Veuillez entrer une date valide pour la formation.");
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function isValidDate(dateString) {
+    const date = new Date(dateString);
+    return !isNaN(date.getTime());
+}
+
+function addField(sectionId, labels, previewId) {
+    const container = document.getElementById(sectionId);
+    const div = document.createElement("div");
+    div.className = "mt-2 space-y-2";
+
+    labels.forEach(label => {
+        const labelElement = document.createElement("label");
+        labelElement.textContent = label;
+        labelElement.className = "block text-gray-700 font-semibold";
+
+        const input = document.createElement("input");
+        input.className = "w-full p-2 border rounded";
+        input.type = label.toLowerCase().includes("date") ? "date" : "text";
+
+        input.oninput = function () {
+            updateDynamicPreview(sectionId, previewId);
+        };
+
+        div.appendChild(labelElement);
+        div.appendChild(input);
+    });
+
+    container.appendChild(div);
+    updateDynamicPreview(sectionId, previewId);
+    toggleRemoveButton(sectionId);
+}
+
+function removeField(sectionId, previewId) {
+    const container = document.getElementById(sectionId);
+    const inputs = container.querySelectorAll("input");
+
+    if (inputs.length > 1) {
+        const lastInputDiv = inputs[inputs.length - 1].parentElement;
+        container.removeChild(lastInputDiv);
+        updateDynamicPreview(sectionId, previewId);
+        toggleRemoveButton(sectionId);
+    }
+}
+
+function toggleRemoveButton(sectionId) {
+    const container = document.getElementById(sectionId);
+    const removeButton = document.getElementById("remove-" + sectionId);
+
+    if (removeButton) {
+        const inputCount = container.querySelectorAll("input").length;
+        removeButton.style.display = inputCount > 1 ? "inline-block" : "none";
+    }
+}
+
+function updateDynamicPreview(sectionId, previewId) {
+    const container = document.getElementById(sectionId);
+    const previewContainer = document.getElementById(previewId);
+    previewContainer.innerHTML = "";
+
+    Array.from(container.children).forEach(div => {
+        const values = Array.from(div.children)
+            .filter(input => input.tagName === "INPUT")
+            .map(input => input.value.trim())
+            .filter(value => value !== "");
+
+        if (values.length > 0) {
+            const p = document.createElement("p");
+            p.className = "mt-2 text-gray-700";
+
+            if (sectionId === "skills-container") {
+                const [competence, niveau] = values;
+                p.innerHTML = `
+                    <strong>${competence || "Compétence"}</strong> - ${niveau || "Niveau de maîtrise"}
+                `;
+            } else if (sectionId === "education-container") {
+                let [diplome, etablissement, dateDebut, dateFin] = values;
+                dateDebut = dateDebut ? new Date(dateDebut).toLocaleDateString("fr-FR") : "N/A";
+                dateFin = dateFin ? new Date(dateFin).toLocaleDateString("fr-FR") : "N/A";
+                p.innerHTML = `
+                    <strong>${diplome || "Diplôme"}</strong> - ${etablissement || "Établissement"}<br>
+                    <em>${dateDebut} - ${dateFin}</em>
+                `;
+            } else if (sectionId === "interests-container") {
+                const [interet] = values;
+                p.innerHTML = `
+                    <strong>${interet || "Centre d’intérêt"}</strong>
+                `;
+            } else if (sectionId === "references-container") {
+                const [nom, poste, contact] = values;
+                p.innerHTML = `
+                    <strong>${nom || "Nom"}</strong> - ${poste || "Poste"}<br>
+                    <em>${contact || "Contact"}</em>
+                `;
+            } else if (sectionId === "languages-container") {
+                const [langue, niveau] = values;
+                p.innerHTML = `
+                    <strong>${langue || "Langue"}</strong> - ${niveau || "Niveau de compétence"}
+                `;
+            } else {
+                p.innerText = values.join(" - ");
+            }
+
+            previewContainer.appendChild(p);
+        }
+    });
+}
+
+// function generatePDF() {
+//     const { jsPDF } = window.jspdf;
+//     const doc = new jsPDF('p', 'mm', 'a4');
+
+//     html2canvas(document.getElementById('cv-preview')).then(canvas => {
+//         const imgData = canvas.toDataURL('image/png');
+//         const imgWidth = 210;
+//         const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+//         doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+//         doc.save('cv.pdf');
+//     });
+// }
+
+    
+function updateProfilePic(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('profile-pic-preview').src = e.target.result;
+            document.getElementById('profile-pic').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function toggleRemoveButton(sectionId) {
+    const container = document.getElementById(sectionId);
+    const removeButton = document.getElementById("remove-" + sectionId);
+
+    if (removeButton) {
+        const inputCount = container.querySelectorAll("input").length;
+        removeButton.style.display = inputCount > 1 ? "inline-block" : "none";
+    }
+}
+  
 //cette fonction permet de mettre à jour le contenu dynamique de la prévisualisation
 //  à partir des valeurs des champs du formulaire
 //et de les afficher dans la prévisualisation
-function updateDynamicPreview(sectionId, previewId) {
-  const container = document.getElementById(sectionId);
-  const previewContainer = document.getElementById(previewId);
-  previewContainer.innerHTML = "";
+// function updateDynamicPreview(sectionId, previewId) {
+//   const container = document.getElementById(sectionId);
+//   const previewContainer = document.getElementById(previewId);
+//   previewContainer.innerHTML = "";
 
-  Array.from(container.children).forEach(div => {
-    const values = Array.from(div.children)
-      .filter(input => input.tagName === "INPUT")
-      .map(input => input.value)
-      .filter(value => value.trim() !== "");
+//   Array.from(container.children).forEach(div => {
+//     const values = Array.from(div.children)
+//       .filter(input => input.tagName === "INPUT")
+//       .map(input => input.value)
+//       .filter(value => value.trim() !== "");
 
-    if (values.length > 0) {
-      const p = document.createElement("p");
-      p.className = "mt-2 text-gray-700";
-      p.innerText = values.join(" - ");
-      previewContainer.appendChild(p);
-    }
-  });
-}
+//     if (values.length > 0) {
+//       const p = document.createElement("p");
+//       p.className = "mt-2 text-gray-700";
+//       p.innerText = values.join(" - ");
+//       previewContainer.appendChild(p);
+//     }
+//   });
+//}
 //cette fonction permet de générer un fichier pdf à partir de
 //  la prévisualisation du cv à l'aide de la librairie jsPDF et html2canvas
 //  qui utilse l'url de l'image de la prévisualisation pour générer le pdf
-  function generatePDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF('p', 'mm', 'a4'); 
+//   function generatePDF() {
+//   const { jsPDF } = window.jspdf;
+//   const doc = new jsPDF('p', 'mm', 'a4'); 
 
 
-   html2canvas(document.getElementById('cv-preview')).then(canvas => {
-    const imgData = canvas.toDataURL('image/png'); 
-  const imgWidth = 210; 
-   const imgHeight = (canvas.height * imgWidth) / canvas.width; 
-    // function generatePDF() {
-    //     html2pdf()
-    //       .from(document.getElementById('cv-preview'))
-    //       .save('cv.pdf');
-    //   }
-      
+//    html2canvas(document.getElementById('cv-preview')).then(canvas => {
+//     const imgData = canvas.toDataURL('image/png'); 
+//   const imgWidth = 210; 
+//    const imgHeight = (canvas.height * imgWidth) / canvas.width; 
+//    doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+//     doc.save('cv.pdf'); 
+//   });
+//  }
+
+function generatePDF() {
+   
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'mm', 'a4');
     
-   doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    doc.save('cv.pdf'); 
-  });
- }
+
+    
+    html2canvas(document.getElementById('cv-preview')).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 210;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        doc.save('cv.pdf');
+    });
+}
+
+  
 
  //cette fonction permet de mettre à jour la photo de profil grace à un
  //  événement qui est déclenché lorsqu'on choisit une photo et qu'on la charge
-function updateProfilePic(event) {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('profile-pic').src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+//  function updateProfilePic(event) {
+//     const file = event.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = function (e) {
+        
+//         document.getElementById('profile-pic-preview').src = e.target.result;
+        
+//         document.getElementById('profile-pic').src = e.target.result;
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   }
+
+//cette fonction permet de sauvegarder
+//  les données de l'utilisateur sur le navigateur
+
+function updateDynamicPreview(sectionId, previewId) {
+    const container = document.getElementById(sectionId);
+    const previewContainer = document.getElementById(previewId);
+    previewContainer.innerHTML = ""; // Réinitialiser avant de remplir
+
+    Array.from(container.children).forEach(div => {
+        const values = Array.from(div.children)
+            .filter(input => input.tagName === "INPUT")
+            .map(input => input.value.trim())
+            .filter(value => value !== "");
+
+        if (values.length > 0) {
+            const p = document.createElement("p");
+            p.className = "mt-2 text-gray-700";
+
+            if (sectionId === "skills-container") {
+                // Formatage spécifique pour les compétences
+                const [competence, niveau] = values;
+                p.innerHTML = `
+                    <strong>${competence || "Compétence"}</strong> - ${niveau || "Niveau de maîtrise"}
+                `;
+            } else if (sectionId === "education-container") {
+                // Formatage spécifique pour les formations
+                let [diplome, etablissement, dateDebut, dateFin] = values;
+                dateDebut = dateDebut ? new Date(dateDebut).toLocaleDateString("fr-FR") : "N/A";
+                dateFin = dateFin ? new Date(dateFin).toLocaleDateString("fr-FR") : "N/A";
+                p.innerHTML = `
+                    <strong>${diplome || "Diplôme"}</strong> - ${etablissement || "Établissement"}<br>
+                    <em>${dateDebut} - ${dateFin}</em>
+                `;
+            } else if (sectionId === "interests-container") {
+                // Formatage spécifique pour les centres d’intérêt
+                const [interet] = values;
+                p.innerHTML = `
+                    <strong>${interet || "Centre d’intérêt"}</strong>
+                `;
+            } else if (sectionId === "references-container") {
+                // Formatage spécifique pour les références
+                const [nom, poste, contact] = values;
+                p.innerHTML = `
+                    <strong>${nom || "Nom"}</strong> - ${poste || "Poste"}<br>
+                    <em>${contact || "Contact"}</em>
+                `;
+            } else if (sectionId === "languages-container") {
+                // Formatage spécifique pour les langues
+                const [langue, niveau] = values;
+                p.innerHTML = `
+                    <strong>${langue || "Langue"}</strong> - ${niveau || "Niveau de compétence"}
+                `;
+            } else {
+                // Formatage par défaut pour les autres sections
+                p.innerText = values.join(" - ");
+            }
+
+            previewContainer.appendChild(p);
+        }
+    });
 }
