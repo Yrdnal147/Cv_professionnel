@@ -11,47 +11,57 @@
  
   <title>Cv </title>
 </head>
-<header>
-  <nav class="bg-white-800 h-40 ">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="relative flex h-16 items-center justify-between">
-        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-          
-          <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
-            <span class="absolute -inset-0.5"></span>
-            <span class="sr-only"> menu</span>
-          
-            <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-            <!--
-              Icon when menu is open.
-  
-              Menu open: "block", Menu closed: "hidden"
-            -->
-            <svg class="hidden size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+
+<!--HEADER-->
+<header class="flex items-center justify-between px-6 md:px-16 py-4 bg-white shadow-md ">
+
+  <!--logo a gauche-->
+
+  <a href="#" class="flex items-center">
+      <img src="/assets/webnova.png" alt="logo" class="w-12 h-12">
+  </a>
+
+  <!--menu centre-->
+  <nav class="hidden md:flex space-x-8 text-gray-700 text-lg font-medium">
+      <a href="/accueil/accueil.html"  class="hover:text-blue-500">Accueil</a>
+      <a href="#" class="hover:text-blue-500">Prix</a>
+      <a href="#" class="hover:text-blue-500">FAQ</a>
+  </nav>
+
+  <!-- Boutons à droite -->
+  <div class="hidden md:flex space-x-4">
+      <button
+          class="border border-gray-400 text-gray-700 px-5 py-2 rounded-md text-sm font-semibold hover:bg-gray-100">
+          Connexion
+      </button>
+      <a href="../cv/index.html" class="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-blue-600 transition inline-block text-center">
+          Créer un CV
+      </a>
+      
+  </div>
+
+  <!-- Menu burger pour mobile -->
+  <button id="menu-toggle" class="md:hidden text-gray-700 text-2xl">&#9776;</button>
+
+  <!-- Menu mobile (caché par défaut) -->
+  <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
+      <a href="../accueil/accueil.html" class="block py-3 px-6 text-gray-700 hover:bg-gray-100">Modèles</a>
+      <a href="#" class="block py-3 px-6 text-gray-700 hover:bg-gray-100">Prix</a>
+      <a href="#" class="block py-3 px-6 text-gray-700 hover:bg-gray-100">FAQ</a>
+      <div class="flex flex-col space-y-2 p-4">
+          <button
+              class="border border-gray-400 text-gray-700 px-5 py-2 rounded-md text-sm font-semibold hover:bg-gray-100">
+              Connexion
           </button>
+          <button class="bg-blue-500 text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-blue-600">
+              Créer un CV
+          </button>
+      </div>
+  </nav>
+
+</header>
         </div>
-        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex shrink-0 items-center">
-            <img class="h-8 w-auto" src="./assets/webnova.png" alt="webnova">
-          </div>
-          <div class="hidden sm:ml-6 sm:block">
-            <div class="flex space-x-2 relative">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="./index.html" class="p-2" aria-current="page">Accueil</a>
-              
-              <input type="search" class="rounded-full border-2 px-2 focus:border-0" name="email" id="email" placeholder="Rechercher...">
-             
-          </div>
-        </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <a  href=""  class="relative btn btn-primary transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-transparent">
-            Générateur de  cv
-          </a>
-        </div>
+        
       </div>
     </div>
   
@@ -59,23 +69,23 @@
     <div class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3">
         
-        <a href="./index.html" class="block rounded-md px-3 py-2" aria-current="page">Générater Cv</a>
+        <a href="./index.html" class="block  border-5 px-3 py-2" aria-current="page">Générater Cv</a>
        
       </div>
     </div>
 </nav>
 </header>
-<body class="bg-gray-100 p-5">
+<body class="bg-blue-100 p-2 mt-8">
   
+  <div class="grid grid-cols-2 gap-4 max-h-screen">
     
-  <div class="grid grid-cols-2 gap-4 min-h-screen">
-    
-    <div class="bg-400 p-6 shadow-lg rounded-lg">
-      <h2 class="text-2xl font-bold mb-4">Formulaire CV</h2>
+    <div class=" p-6  bg-black-500 shadow-lg rounded-lg">
+      <h2 class="text-4xl font-bold mb-4">Formulaire CV</h2>
+
       <!---Ici dans le formulaire, on appelle la fonction 
         updatePreview() définit dans le fichier script à partir de l'évènement
          oniput qui permet de gérer la prévisualisation en temps réel des infos entrées  --->
-      <form class="space-y-4" oninput="updatePreview()">
+      <form class="space-y-4 " oninput="updatePreview()">
         <h3 class="text-lg font-semibold">Informations personnelles</h3>
         <h3 class="text-lg font-semibold">Photo de profil</h3>
 <div class="flex items-center space-x-4 mx-auto">
@@ -114,7 +124,7 @@
 
         <!-- ici, la fonction addField() est appélée grace à l' évènement  onclick:
           l'évènemnt s'applique sur le bouton et permet de d'ajouter un champ-->
-        <button type="button" onclick="addField('experience-container', ['Nom de l’entreprise', 'Poste occupé', 'Durée', 'Description des missions'], 'cv-experience')" class="mt-2 bg-blue-500 text-white p-2 rounded">Ajouter</button>
+        <button type="button" onclick="addField('experience-container', ['Nom de l’entreprise', 'Poste occupé', 'Date de début', 'Date de fin', 'Description des missions'], 'cv-experience')" class="mt-2 bg-blue-500 text-white p-2 rounded">Ajouter</button>
 
         <!-- En gros ici, la fonction removeField() est appélée grace à l' évènement  onclick:
           l'évènement s'applique sur le bouton et permet de supprimer un champ-->
@@ -149,79 +159,10 @@
       </form>
     </div>
     
-    <!-- <div class="bg-white shadow-lg  rounded-lg overflow-hidden min-h-screen" id="cv-preview">
-        <div class="grid grid-cols-1 md:grid-cols-4  h-full">
-          
-          
-          <div class="bg-gradient-to-b from-red-900 col-span-1 to-blue-700 text-white p-6 h-full">
-           
-              
-            <div class="text-center mx-auto  w-full bg-gray-200 rounded-full gap-4 ">
-                <img id="profile-pic" src="https://via.placeholder.com/150" alt="Photo de profil" class="w-34 h-32 mx-auto rounded-full shadow-md mb-4">
-              
-              </div>
-        
-            <div class="mt-12">
-              <h3 class="text-lg font-bold">CONTACT</h3>
-              <p id="cv-email" class="text-sm">Votre Email</p>
-              <p id="cv-phone" class="text-sm">Votre Téléphone</p>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-lg font-bold">LANGUES</h3>
-              <div id="cv-languages" class="mt-4"></div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-lg font-bold">CENTRES D’INTÉRÊT</h3>
-              <div id="cv-interests" class="mt-4"></div>
-            </div>
-          </div>
-      
-                                
-          <div class="col-span-3  bg-gray-200 p-6">
-            <div class="text-lg  gap-4">
-              
-            <h1 id="cv-name" class="text-4xl  mt-8 font-bold"> Nom complet</h1>
-            </div>
-            <div>
-                <BR>
-                    <h2 id="cv-title" class="text-xl">Titre du poste</h2></BR>
-                  
-                  <p id="cv-description" class="text-sm text-gray-300">Votre description...</p>
-                </div>
-                <div>
-                    <BR>
-                        <h2 id="cv-title" class="text-xl">s</h2></BR>
-                      
-                      <p id="cv-age" class="text-sm text-gray-300">...</p>
-                    </div>
-            <br>
-            <div>
-              <h3 class="text-xl font-bold text-blue-900">DESCRIPTION</h3>
-              <p id="cv-about" class="mt-2 text-gray-700"></p>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-bold text-blue-900">EXPÉRIENCES PROFESSIONNELLES</h3>
-              <div id="cv-experience" class="mt-4"></div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-bold text-blue-900">FORMATIONS</h3>
-              <div id="cv-education" class="mt-4"></div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-bold text-blue-900">COMPÉTENCES</h3>
-              <div id="cv-skills" class="mt-4"></div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-bold text-blue-900">RÉFÉRENCES</h3>
-              <div id="cv-gender" class="mt-4"></div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div> -->
+      <!--partie Présualisation-->
       <div class="w-full max-w-4xl bg-white shadow-lg flex rounded-lg overflow-hidden" id="cv-preview">
         
-        <!-- Colonne gauche -->
+        <!-- Colonne gauche  du notre cv -->
         <div class="w-1/3 bg-orange-500 text-white p-6">
           <!-- Photo de profil -->
           <div class="flex flex-col items-center">
@@ -236,7 +177,7 @@
           
           <!-- Ici vous avez la section informations personnelles -->
           <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-white pb-2 flex items-center">📍 Informations</h3>
+              <h3 class="text-lg font-semibold border-b border-white pb-2 flex items-center"> Informations</h3>
               <p id="cv-address">Adresse :</p>
               <p id="cv-phone">Téléphone : </p>
               <p id="cv-gender">votre sex</p>
@@ -245,14 +186,14 @@
           
           <!-- Langues -->
           <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-white pb-2 flex items-center">🌍 Langues</h3>
+              <h3 class="text-lg font-semibold border-b border-white pb-2 flex items-center"> Langues</h3>
               <p id="cv-languages" ></p><progress value="90" max="100" class="w-full"></progress></p>
               
           </div>
 
           <!-- Centres d'intérêt -->
           <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-white pb-2 flex items-center">🎯 Centres d'intérêt</h3>
+              <h3 class="text-lg font-semibold border-b border-white pb-2 flex items-center"> Centres d'intérêt</h3>
               <p  id= "cv-interests" ></p>
           </div>
       </div>
@@ -265,14 +206,15 @@
               <p id="cv-title" class="text-lg">Titre du poste</p>
           </div>
           
-          <!-- Description -->
+          <!-- Description du profil-->
           <div class="mt-4">
+            <h3 class="">Profil</h3>
               <p id="cv-description" class="text-gray-700">Description professionnelle ici...</p>
           </div>
 
-          <!-- Expériences professionnelles -->
+          <!-- Section Expériences professionnelles -->
           <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center">💼 Expériences</h3>
+              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center"> Expériences</h3>
               <div id="cv-experience">
                   <p class="font-bold">Poste - Entreprise</p>
                   <p class="text-sm text-gray-600">Date début - Date fin</p>
@@ -280,35 +222,37 @@
               </div>
           </div>
           
-          <!-- Formations -->
+          <!-- section Formations -->
           <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center">🎓 Formations</h3>
+              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center"> Formations</h3>
               <div id="cv-education">
                   <p class="font-bold">Diplôme - Établissement</p>
                   <p class="text-sm text-gray-600">Année début - Année fin</p>
               </div>
           </div>
           
-          <!-- Compétences -->
+          <!-- section Compétences -->
           <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center">⚡ Compétences</h3>
+              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center"> Compétences</h3>
               <ul id="cv-skills">
                   <li>Compétence 1 - <progress value="80" max="100" class="w-full"></progress></li>
                   <li>Compétence 2 - <progress value="60" max="100" class="w-full"></progress></li>
               </ul>
           </div>
           
-          <!-- Références -->
-          <div class="mt-6">
-              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center">📞 Références</h3>
+          <!-- section Références -->
+          <div class="mt-6 ">
+              <h3 class="text-lg font-semibold border-b border-black pb-2 flex items-center"> Références</h3>
               <div id="cv-references">
                   <p class="font-bold">Nom - Poste</p>
                   <p class="text-sm text-gray-600">Contact</p>
               </div>
           </div>
       </div>
+      
   </div>
+  
 
-<script src="../script2.js"></script>
+<script src="script2.js"></script>
 </body>
 </html>

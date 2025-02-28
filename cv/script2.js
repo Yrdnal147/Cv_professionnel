@@ -1,16 +1,16 @@
 //cette fonction récupère toutes les  des champs du
-// formulaire et les affiche dans la prévisualisation
+// formulaire et les affiche dans la prévisualisation(met à jour la prévisualisation)
 
 function updatePreview() {
-    const nom=document.getElementById("cv-name").innerText = document.getElementById("name").value || "Votre Nom";
-    const titre= document.getElementById("cv-title").innerText = document.getElementById("title").value || "Titre du poste";
-    const description= document.getElementById("cv-description").innerText = document.getElementById("description").value || "Votre description...";
-    const email= document.getElementById("cv-email").innerText = document.getElementById("email").value || "Votre Email";
+    const nom = document.getElementById("cv-name").innerText = document.getElementById("name").value || "Votre Nom";
+    const titre = document.getElementById("cv-title").innerText = document.getElementById("title").value || "Titre du poste";
+    const description = document.getElementById("cv-description").innerText = document.getElementById("description").value || "Votre description...";
+    const email = document.getElementById("cv-email").innerText = document.getElementById("email").value || "Votre Email";
     const phone = document.getElementById("cv-phone").innerText = document.getElementById("phone").value || "Votre Téléphone";
-    const age= document.getElementById("cv-age").innerText = document.getElementById("age").value ? `${document.getElementById("age").value} ans` : "Âge non renseigné";
-    const genre= document.getElementById("cv-gender").innerText = document.getElementById("gender").value || "Genre";
-    const situation= document.getElementById("cv-situation").innerText = document.getElementById("situation").value || "Situation actuelle";
-    const address= document.getElementById("cv-address").innerText = document.getElementById("adresse").value || "Situation actuelle";
+    const age = document.getElementById("cv-age").innerText = document.getElementById("age").value ? `${document.getElementById("age").value} ans` : "Âge non renseigné";
+    const genre = document.getElementById("cv-gender").innerText = document.getElementById("gender").value || "Genre";
+    const situation = document.getElementById("cv-situation").innerText = document.getElementById("situation").value || "Situation actuelle";
+    const address = document.getElementById("cv-address").innerText = document.getElementById("adresse").value || "Situation actuelle";
     // Ici Mise à jour des listes dynamiques
     updateListPreview("experience-container", "cv-experience");
     updateListPreview("education-container", "cv-education");
@@ -19,7 +19,7 @@ function updatePreview() {
     updateListPreview("interests-container", "cv-interests");
     updateListPreview("references-container", "cv-references");
 
-    if (!nom || !age || !titre || !description || !address || !email || !phone || !genre ) {
+    if (!nom || !age || !titre || !description || !address || !email || !phone || !genre) {
         alert("Veuillez remplir tous les champs obligatoires (Nom, Âge, Titre, email, Téléphone).");
         return null;
     }
@@ -29,27 +29,27 @@ function updatePreview() {
         return null;
     }
 
-    
-    }
-    // if (!validateEmail(email)) {
-    //     alert("Veuillez entrer une adresse e-mail valide.");
-    //     return null;
-    // }
 
-    // if (!validatePhone(telephone)) {
-    //     alert("Veuillez entrer un numéro de téléphone valide  de (9 chiffres).");
-    //     return null;
-    // }
+}
+// if (!validateEmail(email)) {
+//     alert("Veuillez entrer une adresse e-mail valide.");
+//     return null;
+// }
 
-    // return {
-    //     nom, age, titre, description, email, telephone, adresse, entreprise, poste, duree, missions,
-    //     diplome, etablissement, annee, competence, niveau, loisir, langue, niveauLangue,
-    //     photo: photoFile ? URL.createObjectURL(photoFile) : null
-    // };
+// if (!validatePhone(telephone)) {
+//     alert("Veuillez entrer un numéro de téléphone valide  de (9 chiffres).");
+//     return null;
+// }
 
-//function validateEmail(email) {
-    //  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-//}
+// return {
+//     nom, age, titre, description, email, telephone, adresse, entreprise, poste, duree, missions,
+//     diplome, etablissement, annee, competence, niveau, loisir, langue, niveauLangue,
+//     photo: photoFile ? URL.createObjectURL(photoFile) : null
+// };
+
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 
 function validatePhone(phone) {
@@ -57,23 +57,6 @@ function validatePhone(phone) {
 }
 
 
-
-// function updateListPreview(containerId, previewId) {
-//     const container = document.getElementById(containerId);
-//     const preview = document.getElementById(previewId);
-    
-//     preview.innerHTML = ""; // Nettoyer avant d'ajouter
-
-//     const items = container.querySelectorAll("input, textarea, select");
-//     let content = "";
-//     items.forEach((item) => {
-//         if (item.value.trim()) {
-//             content += `<p>${item.value}</p>`;
-//         }
-//     });
-
-//     preview.innerHTML = content || "<p>Aucune donnée renseignée</p>";
-// }
 
 
 
@@ -276,7 +259,7 @@ function updateDynamicPreview(sectionId, previewId) {
 //     });
 // }
 
-    
+
 function updateProfilePic(event) {
     const file = event.target.files[0];
     if (file) {
@@ -298,7 +281,7 @@ function toggleRemoveButton(sectionId) {
         removeButton.style.display = inputCount > 1 ? "inline-block" : "none";
     }
 }
-  
+
 //cette fonction permet de mettre à jour le contenu dynamique de la prévisualisation
 //  à partir des valeurs des champs du formulaire
 //et de les afficher dans la prévisualisation
@@ -339,34 +322,34 @@ function toggleRemoveButton(sectionId) {
 //  }
 
 function generatePDF() {
-   
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('p', 'mm', 'a4');
-    
 
-    
+
+
     html2canvas(document.getElementById('cv-preview')).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const imgWidth = 210;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        
+
         doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
         doc.save('cv.pdf');
     });
 }
 
-  
 
- //cette fonction permet de mettre à jour la photo de profil grace à un
- //  événement qui est déclenché lorsqu'on choisit une photo et qu'on la charge
+
+//cette fonction permet de mettre à jour la photo de profil grace à un
+//  événement qui est déclenché lorsqu'on choisit une photo et qu'on la charge
 //  function updateProfilePic(event) {
 //     const file = event.target.files[0];
 //     if (file) {
 //       const reader = new FileReader();
 //       reader.onload = function (e) {
-        
+
 //         document.getElementById('profile-pic-preview').src = e.target.result;
-        
+
 //         document.getElementById('profile-pic').src = e.target.result;
 //       };
 //       reader.readAsDataURL(file);
@@ -433,4 +416,71 @@ function updateDynamicPreview(sectionId, previewId) {
             previewContainer.appendChild(p);
         }
     });
+}
+
+// Sauvegarde les donnees dans le Local Storage
+function saveData() {
+    const cvData = {
+        nom: document.getElementById("cv-name").value(),
+        titre: document.getElementById("cv-title").value(),
+        description: document.getElementById("cv-description").value(),
+        email: document.getElementById("cv-email").value(),
+        phone: document.getElementById("cv-phone").value(),
+        age: document.getElementById("cv-age").value(),
+        genre: document.getElementById("cv-gender").value(),
+        situation: document.getElementById("cv-situation").value(),
+        address: document.getElementById("cv-address").value(),
+        // Ici Mise à jour des listes dynamiques
+        // updateListPreview("experience-container", "cv-experience")
+        // updateListPreview("education-container", "cv-education");
+        // updateListPreview("skills-container", "cv-skills");
+        // updateListPreview("languages-container", "cv-languages");
+        // updateListPreview("interests-container", "cv-interests");
+        // updateListPreview("references-container", "cv-references"),
+
+    }
+
+
+
+    localStorage.setItem('cvData', JSON.stringify(cvData)); // Sauvegarde les donnees
+};
+document.getElementById("name, age,").addEventListener("input", saveData);
+
+// Charge les donnees sauvegarders depuis le Local Storage
+function loadSavedData() {
+    const savedData = JSON.parse(localStorage.getItem('cvData')); // Recuperer les donnees sauvegardees
+    if (savedData) {
+        // Mettre a jour les champs avec les donnees sauvegardees
+        $('#nom').val(savedData.nom);
+        $('#experience').val(savedData.experience);
+        if (savedData.image) {
+            $('#cv-image').attr('src', savedData.image).removeClass('hidden');
+        }
+        $('#email').val(savedData.email);
+        $('#tel').val(savedData.tel);
+        $('#adresse').val(savedData.adresse);
+        $('.entreprise').val(savedData.entreprise);
+        $('#age').val(savedData.age);
+        $('#titre').val(savedData.titre);
+        $('#sexe').val(savedData.sexe);
+        $('#a-propos').val(savedData.a_propos);
+        $('#nom-reference').val(savedData.nom_reference);
+        $('#poste-reference').val(savedData.poste_reference);
+        $('#contact-reference').val(savedData.contact_reference);
+        $('#situation').val(savedData.situation);
+        $('#ville').val(savedData.ville);
+        $('.poste').val(savedData.poste);
+        $('#diplome').val(savedData.diplome);
+        $('#etablissement').val(savedData.etablissement);
+        $('#annee-obtention').val(savedData.annee_obtention);
+        $('.description').val(savedData.description);
+        $('.date-debut').val(savedData.date_debut);
+        $('.date-fin').val(savedData.date_fin);
+        $('#competence').val(savedData.competence);
+        $('#langues').val(savedData.langues);
+        $('#niveau').val(savedData.niveau);
+        $('#loisir').val(savedData.loisir);
+        $('.ville').val(savedData.ville_2);
+        updateCVPreview();
+    }
 }

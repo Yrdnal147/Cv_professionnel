@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="accueil.css">
+    <script src="accueil.js"></script>
+    <link rel="stylesheet" href="../cv/index.html">
+
+    <title>PAGE D'ACCUEIL D'CV</title>
+</head>
+
+<body>
+
+    <!--HEADER-->
+    <header class="flex items-center justify-between px-6 md:px-16 py-4 bg-white shadow-md ">
+
+        <!--logo a gauche-->
+
+        <a href="#" class="flex items-center">
+            <img src="/assets/webnova.png" alt="logo" class="w-12 h-12">
+        </a>
+
+        <!--menu centre-->
+        <nav class="hidden md:flex space-x-8 text-gray-700 text-lg font-medium">
+            <a href="#" class="hover:text-blue-500">Modèles</a>
+            <a href="#" class="hover:text-blue-500">Prix</a>
+            <a href="#" class="hover:text-blue-500">FAQ</a>
+        </nav>
+
+        <!-- Boutons à droite -->
+        <div class="hidden md:flex space-x-4">
+            <button
+                class="border border-gray-400 text-gray-700 px-5 py-2 rounded-md text-sm font-semibold hover:bg-gray-100">
+                Connexion
+            </button>
+            <a href="../cv/index.html" class="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-blue-600 transition inline-block text-center">
+                Créer un CV
+            </a>
+            
+        </div>
+
+        <!-- Menu burger pour mobile -->
+        <button id="menu-toggle" class="md:hidden text-gray-700 text-2xl">&#9776;</button>
+
+        <!-- Menu mobile (caché par défaut) -->
+        <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
+            <a href="#" class="block py-3 px-6 text-gray-700 hover:bg-gray-100">Modèles</a>
+            <a href="#" class="block py-3 px-6 text-gray-700 hover:bg-gray-100">Prix</a>
+            <a href="#" class="block py-3 px-6 text-gray-700 hover:bg-gray-100">FAQ</a>
+            <div class="flex flex-col space-y-2 p-4">
+                <button
+                    class="border border-gray-400 text-gray-700 px-5 py-2 rounded-md text-sm font-semibold hover:bg-gray-100">
+                    Connexion
+                </button>
+                <button class="bg-blue-500 text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-blue-600">
+                    Créer un CV
+                </button>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="px-6 md:px-16 py-12 text-center">
+
+            <div class="mb-8">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4">Créez votre CV professionnel</h1>
+                <P class="text-gray-600 text-lg mb-6">Remplissez le formulaire, choisissez un modèle et téléchargez <br>
+                    CV en quelques minutes.</P>
+                    <a href="../cv/index.html" class="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-blue-600 transition inline-block text-center">
+                        Créer un CV
+                    </a>
+            </div>
+            <!-- Modèles de CV -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <img src="/assets/cv1.jpg" alt="image cv1"
+                    class="cv-image w-64 md:w-80 shadow-md hover:scale-105 transition">
+                <img src="/assets/cv2.jpg" alt="image cv2"
+                    class="cv-image w-64 md:w-80 shadow-md hover:scale-105 transition">
+                <img src="/assets/cv3.jpg" alt="image cv3"
+                    class="cv-image w-64 md:w-80 shadow-md hover:scale-105 transition">
+            </div>
+
+        </section>
+
+        <section class="px-6 md:px-16 py-12 text-center">
+
+            <div>
+                <h1 class="text-3xl md:text-5xl font-bold mb-12">Comment ça marche ?</h1>
+            </div>
+
+            <!--Conteneur des 3 étapes -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12">
+
+                <!--etape 1-->
+                <div class="flex flex-col items-start text-left max-w-xs">
+                    <img src="/assets/cv3.jpg" alt="1" class="w-16 h-16 mb-4">
+                    <h2 class="text-xl font-semibold mb-2">Remplissez vos infos</h2>
+                    <p class="text-gray-600">vous commencez par saisir vos info qui constituent le contenu de votre cv.
+                    </p>
+                </div>
+
+                <!--etape 2-->
+                <div class="flex flex-col items-center text-center max-w-xs">
+                    <img src="/assets/2.PNG" alt="2" class="w-16 h-16 mb-4">
+                    <h2 class="text-xl font-semibold order-2 mt-2">choisissez un modele</h2>
+                    <p class="text-gray-600">choisissez un modele de cv et personnalisez-le en foction de votre modele
+                        et style.</p>
+                </div>
+
+                <!--etape 3-->
+                <div class="flex flex-col items-end text-right max-w-xs">
+                    <img src="/assets/3.PNG" alt="3">
+                    <h2 class="text-xl font-semibold mb-2">telecharchez le cv</h2>
+                    <p class="text-gray-600">telecharchez votre cv immediatement et modifier a tout moment.Simplissime!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image en bas -->
+            <div class="mt-12 flex justify-center">
+                <img src="/assets/Capture.PNG" alt="Capture" class="w-3/4 md:w-1/2 rounded-lg shadow-md">
+            </div>
+        </section>
+
+        <section class="px-6 md:px-16 py-12">
+
+            <h1 class="text-3xl md:text-5xl font-bold text-center mb-12">Fonctionnalités</h1>
+
+            <div class="flex flex-col md:flex-row gap-12">
+                <!--section gauche :4 divisions-->
+
+                <div class="flex flex-col gap-8 w-full md:w-1/2">
+                    <!--fonctinalite 1 cv-->
+                    <div class="flex items-center gap-4">
+                        <img src="https://www.cv.fr/api/media/icon/businesscenter-light" alt="cvs" class="w-6 h-16">
+                        <div>
+                            <h2 class="text-xl font-semibold">cv</h2>
+                            <p class="text-gray-600">creer de manniere illimite de cv nouveaux cv et modofir les a tout
+                                moment</p>
+                        </div>
+                    </div>
+
+                    <!--fonctionalite 2 cv-->
+                    <div class="flex items-center gap-4">
+                        <img src="https://www.cv.fr/api/media/icon/letter-light" alt="letter-light" class="w-6 h-16">
+                        <div>
+                            <h2 class="text-xl font-semibold">lettre de motivation</h2>
+                            <p class="text-xl font-semibold">Ecrivez facilement les lettres de motivations
+                                professionnelles</p>
+                        </div>
+                    </div>
+
+                    <!--fonctionalite 3 cv-->
+                    <div class="flex items-center gap-4">
+                        <img src="https://www.cv.fr/api/media/icon/businesscenter-dark" alt="job" class="w-6 h-16">
+                        <div>
+                            <h2 class="text-xl font-semibold">offres d emploi</h2>
+                            <p class="text-xl font-semibold">soyez informes automatiquement des offres d emplois
+                                pertinentes pour vous</p>
+                        </div>
+                    </div>
+
+                    <!--fonctionalite 4 cv-->
+                    <div class="flex items-center gap-4">
+                        <img src="https://www.cv.fr/api/media/icon/applications-dark" alt="candidat" class="w-6 h-16">
+                        <div>
+                            <h2 class="text-xl font-semibold">candidatures</h2>
+                            <p class="text-xl font-semibold">organisez tous vos candidatures de maniere claire</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--section droite image-->
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <img src="/assets/image.PNG" alt="image letter" class="w-3/4 md:w-1/2 rounded-lg shadow-md">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="px-6 md:px-16 py">
+
+            <h1 class="flex-3xl md:text-5xl font-bold text-center mb-8">Évaluations</h1>
+
+            <!--note moyenne-->
+            <div class="flex flex-col items-center text-center">
+                <div class="flex items-center gap-4">
+                    <p class="text-4xl font-bold">4,3</p>
+                    <img src="/assets/cap.PNG" alt="star" class="w-12 h-12">
+                </div>
+                <p class="text-gray-600 mt-2">Basé sur 20 152 avis</p>
+
+            </div>
+
+            <!--section avis-->
+            <div class="flex flex-col md:flex-row justify-center gap-8 mt-12 ">
+
+                <!--avis 1-->
+                <div class="flex flex-col items-center text-center max-w-xs">
+                    <h3 class="text-xl font-semibold">celine TILHOS</h3>
+                    <p class="text-gray-600 mt-2">cette trame pour realiser mon cv est tout simplement genail,et il en
+                        existe d autres</p>
+                    <img src="/assets/cap.PNG" alt="5etoiles" class="w-20 mt-2">
+                </div>
+
+                <!--avis 2-->
+                <div class="flex flex-col items-center text-center max-w-xs">
+                    <h3 class="text-xl font-semibold">Kineisy Matos</h3>
+                    <p class="text-gray-600 mt-2">cest facile a utiliser et tres utile</p>
+                    <img src="/assets/cap.PNG" alt="5etoiles" class="w-20 mt-2">
+                </div>
+
+                <!--avis 3-->
+                <div class="flex flex-col items-center text-center max-w-xs">
+                    <h3 class="text-xl font-semibold">Pedro M</h3>
+                    <p class="text-gray-600 mt-2">top! Rien a dire tout est, et joliment presente</p>
+                    <img src="/assets/cap.PNG" alt="5etoiles" class="w-20 mt-2">
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Qu'est ce qu'un cv</span>
+                    <button class="toggle-btn">+</button>
+                </div>
+                <div class="faq-answer">
+                    CV (Curriculum Vitae) signifie en latin “carrière de la vie”. Une façon poétique de désigner “le
+                    dossier comportant l’ensemble des indications concernant l’état civil d’un candidat à un poste, ses
+                    diplômes, son expérience professionnelle, etc.”, selon la définition du dictionnaire français
+                    Larousse.
+
+                    Élément indispensable de toute recherche d’emploi, le curriculum vitae se doit de renseigner
+                    l’employeur sur votre profil, vos compétences et et votre parcours. Et face à la concurrence des
+                    nombreux candidats qui postulent aux mêmes emplois, il est important de savoir faire un CV attractif
+                    pour sortir du lot et attirer l’œil des recruteurs !
+
+                </div>
+
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Que mettre dans un cv</span>
+                    <button class="toggle-btn">+</button>
+                </div>
+                <div class="faq-answer">
+                    L’état civil et les coordonnées
+
+                    Le nom, la ville, le numéro de téléphone et l’adresse mail font partie des informations essentielles
+                    à tout CV. On peut ensuite choisir d’ajouter ou non une photo, de mentionner sa date de naissance,
+                    son permis de conduire, son état matrimonial, sa nationalité ou encore ses réseaux sociaux.
+
+                    Le profil personnel
+
+                    Ajouter un petit texte pour se présenter n’est pas systématique mais c’est une bonne façon d’ajouter
+                    une touche personnelle à son CV ! Le profil personnel ou le résumé personnel d’un CV consiste à
+                    résumer en quelques mots ou phrases qui vous êtes et quels sont vos compétences et objectifs,
+                </div>
+            </div>
+        </section>
+
+        <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-12">
+            <!--texte a gauche-->
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4">Faire un CV en ligne</h1>
+                <p class="text-gray-600 text-lg mb-6">Télécharger simple et facile un CV professionnel en quelques
+                    minutes.</p>
+                    <a href="../cv/index.html" class="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-blue-600 transition inline-block text-center">
+                        Créer un CV
+                    </a>
+            </div>
+            <!--images animes a droite-->
+            <div class="relative w-full md:w-1/2 h-64 md:h-80 flex items-center justify-center overflow-hidden ">
+                <img src="/assets/cv1.jpg" alt="cv1" class="cv-image absolute w-40 md:w-48 animate-moveUpDown">
+                <img src="/assets/cv3.jpg" alt="cv3" class="cv-image absolute w-40 md:w-48 animate-moveUpDown delay-300">
+                <img src="/assets/cv2.jpg" alt="cv2" class="cv-image absolute w-40 md:w-48 animate-moveUpDown delay-600">
+            </div>
+
+        </section>
+
+
+
+
+    </main>
+    <footer class="bg-gray-200 py-12">
+        <div class="container mx-auto px-6 md:px-16">
+            
+            <!-- Section principale du footer -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-700">
+                
+                <!-- Colonne 1 : Ressources -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Ressources</h3>
+                    <p class="mb-2">Conseils</p>
+                    <p>Exemples</p>
+                </div>
+
+                <!-- Colonne 2 : Produit -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Produit</h3>
+                    <p class="mb-2">Prix</p>
+                    <p class="mb-2">Modèle</p>
+                    <p>Avis</p>
+                </div>
+
+                <!-- Colonne 3 : Service client -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Service client</h3>
+                    <p class="mb-2">FAQ</p>
+                    <p class="mb-2">Contact</p>
+                    <p class="mb-2">Conditions générales</p>
+                    <p>Politique de confidentialité</p>
+                </div>
+
+                <!-- Colonne 4 : Boutons de téléchargement -->
+                <div class="flex flex-col items-center">
+                    <img src="../assets/footer.jpg" alt="App Store" class="w-32 mb-4">
+                    
+                </div>
+            </div>
+             <!-- Ligne des langues -->
+             <div class="border-t border-gray-300 mt-8 pt-4 text-center text-gray-600">
+                <p>Français • Allemand • Anglais • Italien</p>
+            </div>
+
+        </div>
+</footer>
+    <script src="/accueil/acueil.js"></script>
+</body>
+
+
+</html>
